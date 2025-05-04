@@ -102,7 +102,7 @@ bool Vector::isEmpty() const {
     return size == 0;
 }
 
-int Vector::getSize() const {
+size_t Vector::getSize() const {
     return size;
 }
 

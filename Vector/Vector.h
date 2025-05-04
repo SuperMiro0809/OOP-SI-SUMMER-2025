@@ -34,7 +34,7 @@ class Vector {
 
       bool isEmpty() const;
 
-      int getSize() const;
+      size_t getSize() const;
 
       int getCapacity() const;
 
