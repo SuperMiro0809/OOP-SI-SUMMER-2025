@@ -154,6 +154,41 @@ void String::shrinkToFit() {
     capacity = size;
 }
 
+int String::find(char c) const {
+    for (int i = 0; i < size; i++) {
+        if (elements[i] == c) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int String::find(const char* substr) const {
+    size_t subLength = std::strlen(substr);
+
+    if (subLength == 0 || subLength > size) {
+        return -1;
+    }
+
+    for (int i = 0; i <= size - subLength; i++) {
+        int j = 0;
+        while (j < subLength && elements[i + j] == substr[j]) {
+            j++;
+        }
+
+        if (j == subLength) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int String::find(const String& substr) const {
+    return find(substr.elements);
+}
+
 char& String::operator[](int index) {
     if (index >= size) {
         throw std::out_of_range("Index out of range");

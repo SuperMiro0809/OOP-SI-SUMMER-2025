@@ -50,6 +50,12 @@ class String {
 
       void shrinkToFit();
 
+      int find(char c) const;
+
+      int find(const char* substr) const;
+
+      int find(const String& substr) const;
+
       char& operator[](int index);
 
       const char& operator[](int index) const;
