@@ -19,5 +19,8 @@ class RailVehicle: public Vehicle {
         ~RailVehicle();
 
         RailVehicle& operator=(const RailVehicle& other);
+
+        friend std::istream& operator>>(std::istream& is, RailVehicle& vehicle);
+        friend std::ostream& operator<<(std::ostream& os, const RailVehicle& vehicle);
 };
 

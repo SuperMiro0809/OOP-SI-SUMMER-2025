@@ -27,16 +27,27 @@ RoadVehicle& RoadVehicle::operator=(const RoadVehicle& other) {
         freeDynamic();
         copyFromDynamic(other);
     }
+
+    return *this;
 }
 
 std::istream& operator>>(std::istream& is, RoadVehicle& vehicle) {
-   // operator>>(is, (Vehicle)vehicle);
+    operator>>(is, (Vehicle&)vehicle);
+
+    char buffer[1024];
+    is >> buffer;
+
+    size_t inputLen = std::strlen(buffer);
+    vehicle.ramaNumber = new char[inputLen + 1];
+    std::strcpy(vehicle.ramaNumber, buffer);
+
+    is >> vehicle.tireCount;
 
     return is;
 }
 
 std::ostream& operator<<(std::ostream& os, const RoadVehicle& vehicle) {
-    operator<<(os, (Vehicle)vehicle); // os<<(Vehicle)vehicle;
+    operator<<(os, (Vehicle&)vehicle); // os<<(Vehicle)vehicle;
 
     os << vehicle.ramaNumber << ' ' << vehicle.tireCount;
 

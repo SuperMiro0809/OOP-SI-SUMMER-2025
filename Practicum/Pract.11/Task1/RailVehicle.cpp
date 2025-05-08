@@ -27,4 +27,29 @@ RailVehicle& RailVehicle::operator=(const RailVehicle& other) {
         freeDynamic();
         copyFromDynamic(other);
     }
+
+    return *this;
+}
+
+std::istream& operator>>(std::istream& is, RailVehicle& vehicle) {
+    operator>>(is, (Vehicle&)vehicle);
+
+    char buffer[1024];
+    is >> buffer;
+
+    size_t inputLen = std::strlen(buffer);
+    vehicle.driverName = new char[inputLen + 1];
+    std::strcpy(vehicle.driverName, buffer);
+
+    is >> vehicle.trailerCount;
+
+    return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const RailVehicle& vehicle) {
+    operator<<(os, (Vehicle&)vehicle);
+
+    os << vehicle.driverName << ' ' << vehicle.trailerCount;
+
+    return os;
 }
